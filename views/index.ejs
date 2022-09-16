@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Todo express</title>
+
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Todo express</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <ul class="items">
+          <% for(let i=0; i< items.length; i++){ %>
+          <li class="item">
+            <% if(items[i].completed && items[i].trashed == false) {%>
+            <span class="completed"> <%= item.title %> </span>
+            <% } else if(items[i].trashed == false){ %>
+            <span> <%= items[i].title %> </span>
+            <% } %>
+            <span class="fa fa-trash"></span>
+            <span class="fa fa-times-circle"></span>
+          </li>
+          <% } %>
+        </ul>
+
+        <form action="/addTodo" method="post">
+          <input type="text" placeholder="thing to do" name="todoItem" />
+          <input type="submit" />
+        </form>
+      </div>
+    </main>
+    <section class="trash">
+      <h2><span class="fa fa-trash"></span> Trash</h2>
+      <div class="container">
+        <ul class="items">
+          <% for(let i=0; i< items.length; i++){ %> <% if( items[i].trashed ==
+          true) {%>
+          <li class="item trashed">
+            <span> <%= item.title %> </span>
+          </li>
+          <span class="fa fa-trash"></span>
+          <% } %> <% } %>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>
